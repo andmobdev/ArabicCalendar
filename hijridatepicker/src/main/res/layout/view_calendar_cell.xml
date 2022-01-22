@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="hijriDate"
+            type="com.sodainmind.hijridatepicker.HijriObj" />
+
+        <variable
+            name="adapter"
+            type="com.sodainmind.hijridatepicker.CalendarDateAdapter" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/rl_day_bg"
+        android:layout_width="match_parent"
+        android:layout_margin="1dp"
+        android:background="@android:color/white"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->adapter.selectCell(hijriDate)}"
+        app:layout_constraintDimensionRatio="1:1">
+
+        <TextView
+            android:id="@+id/tv_greg_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:letterSpacing="0.15"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="9" />
+
+        <TextView
+            android:id="@+id/tv_greg_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/tv_greg_date"
+            android:letterSpacing="0.1"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_greg_date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mar" />
+
+        <TextView
+            android:id="@+id/tv_hijri_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_greg_date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-6dp"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.05"
+            android:text="@{hijriDate.day>0?hijriDate.arabicNumber:``}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_greg_month"
+            tools:text="29" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
