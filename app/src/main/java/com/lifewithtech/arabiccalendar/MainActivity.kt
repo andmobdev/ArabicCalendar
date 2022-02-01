@@ -13,11 +13,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val tv = findViewById<TextView>(R.id.tv_click)
+        dateTest.set(Calendar.DATE,10)
         tv.setOnClickListener {
             com.sodainmind.hijridatepicker.ArabicCalendarDialog(onItemClick = {
                 Toast.makeText(this, it.gregDate, Toast.LENGTH_LONG).show()
 
-            }, dateTest).show(supportFragmentManager, "DIALOG")
+            }).show(supportFragmentManager, "DIALOG")
         }
     }
 }
