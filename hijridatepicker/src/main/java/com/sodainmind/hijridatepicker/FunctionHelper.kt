@@ -22,7 +22,7 @@ object FunctionHelper {
         HijriMonth.ZILHIJJATIL_HARAM
     )
 
-    val days = arrayListOf("S","M","T","W","T","F","S")
+    val days = arrayListOf("S", "M", "T", "W", "T", "F", "S")
 
     object HijriMonth {
         const val SHEHRE_MOHARRAMUL_HARAM = "Shehre Moharramul Haram"

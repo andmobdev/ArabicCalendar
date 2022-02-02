@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="hijri_month_year">#f5e8c9</color>
+    <color name="cancel_ok_button">#c79114</color>
+    <color name="grey_cell">#c7c6c3</color>
+    <color name="cell_border">#8f7224</color>
+    <color name="cell_inner">#c2b38c</color>
 </resources>

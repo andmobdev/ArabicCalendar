@@ -1,12 +1,19 @@
 package com.sodainmind.hijridatepicker
 
+
+
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+
 import com.sodainmind.hijridatepicker.databinding.ViewCalendarCellBinding
+
+private var view: View? =null
 
 class CalendarDateAdapter(
     private var onItemClick: (HijriObj) -> Unit, private val list: MutableList<HijriObj>
@@ -30,8 +37,17 @@ class CalendarDateAdapter(
         holder.binding.hijriDate = item
     }
 
-    fun selectCell(item: HijriObj) {
+    fun selectCell(v: View, item: HijriObj) {
         onItemClick(item)
+            if (view == v) {
+                view?.setBackgroundResource(R.drawable.normal_cell_border)
+
+            } else {
+                v.setBackgroundResource(R.drawable.cell_border)
+                view?.setBackgroundResource(R.drawable.normal_cell_border)
+            }
+        view=v
+
     }
 
     fun updateList(list: ArrayList<HijriObj>) {

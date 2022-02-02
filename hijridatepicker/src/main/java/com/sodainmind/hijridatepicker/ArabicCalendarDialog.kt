@@ -10,7 +10,6 @@ import kotlin.collections.ArrayList
 import androidx.databinding.DataBindingUtil
 import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
 import android.view.ViewGroup
-import com.sodainmind.hijridatepicker.generated.callback.OnClickListener
 
 
 class ArabicCalendarDialog() : DialogFragment() {
@@ -24,6 +23,7 @@ class ArabicCalendarDialog() : DialogFragment() {
     private var end = 1500
 
     init {
+        //FunctionHelper.hijriMonth.clear()
         setDate(Calendar.getInstance())
     }
 
@@ -183,17 +183,16 @@ class ArabicCalendarDialog() : DialogFragment() {
         }
     }
 
-    fun setCurrentDate(today: Calendar): ArabicCalendarDialog {
-        setDate(today)
-        return this
-
-    }
-
     private fun setDate(today: Calendar): ArabicCalendarDialog {
         todayHijriDate = FunctionHelper.getHijriDate(today.time)
         selectedDate = getHijriDate(today)
         data = updateCurrentMonth(todayHijriDate)
+        return this
 
+    }
+
+    fun setCurrentDate(today: Calendar): ArabicCalendarDialog {
+        setDate(today)
         return this
 
     }

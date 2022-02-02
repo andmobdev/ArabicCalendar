@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,13 +16,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/rl_day_bg"
         android:layout_width="match_parent"
-        android:layout_margin="1dp"
-        android:background="@android:color/white"
+        android:background="@drawable/normal_cell_border"
         android:layout_height="wrap_content"
-        android:onClick="@{()->adapter.selectCell(hijriDate)}"
+        android:onClick="@{(v)->adapter.selectCell(v,hijriDate)}"
         app:layout_constraintDimensionRatio="1:1">
 
         <TextView
@@ -33,9 +31,11 @@
             android:layout_marginTop="2dp"
             android:letterSpacing="0.15"
             android:textSize="10sp"
+            android:text="@{hijriDate.gregDate.substring(0,3)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="9" />
+            tools:text="9"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/tv_greg_month"
@@ -47,7 +47,8 @@
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/tv_greg_date"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Mar" />
+            tools:text="Mar"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/tv_hijri_date"
@@ -58,8 +59,10 @@
             android:layout_marginTop="-6dp"
             android:includeFontPadding="false"
             android:letterSpacing="0.05"
+            android:textStyle="bold"
             android:text="@{hijriDate.day>0?hijriDate.arabicNumber:``}"
             android:textSize="20sp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

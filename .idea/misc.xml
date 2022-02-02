@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Projects/arabiccalendar/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/arrow_right.xml" value="0.239" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/cell_border.xml" value="0.124" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/ic_arrow_left.xml" value="0.239" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/ic_arrow_right.xml" value="0.239" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/left_arrow.xml" value="0.239" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/normal_cell_border.xml" value="0.124" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/dialog_calendar.xml" value="0.25416666666666665" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_calendar_cell.xml" value="0.264" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_day.xml" value="0.11302083333333333" />
