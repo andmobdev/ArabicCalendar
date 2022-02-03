@@ -186,24 +186,41 @@ class ArabicCalendarDialog() : DialogFragment() {
 
     }
 
+    /**
+     * setCurrentDate() method allows to set the date of opening of calendar instead of default date which is current date.
+     * @param today it contains the date as calendar instance which sets the date of calendar as per requirement.
+     */
     fun setCurrentDate(today: Calendar): ArabicCalendarDialog {
         setDate(today)
         return this
 
     }
 
+    /**
+     * setOnDateListener() this method provides the user value of selected user input in calendar after successful selection.
+     * @param listener it is a interface which provide the selected value value from the Hijri calendar.
+     */
     fun setOnDateSetListener(listener: OnDateSelectedListener): ArabicCalendarDialog {
         this.listener = listener
         return this
 
     }
 
+    /**
+     * setYearRange() method is used to set custom working range of Hijri calendar
+     * @param start uses to assign the starting year of calendar
+     * @param end uses to assign the ending year of the calendar
+     */
     fun setYearRange(start: Int, end: Int): ArabicCalendarDialog {
         this.start = start
         this.end = end
         return this
     }
 
+    /**
+     *setHijriMonthArray() method uses a string array to clear the existing array of month with new user defined arraylist.
+     * @param hijriMonthArray is used to assign the Hijri month defined by user instead of default
+     */
     fun setHijriMonthArray(hijriMonthArray: ArrayList<String>): ArabicCalendarDialog {
         if (hijriMonthArray.size == 12) {
             FunctionHelper.hijriMonth.clear()
