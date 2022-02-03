@@ -1,6 +1,7 @@
 package com.sodainmind.hijridatepicker
 
 
+import android.content.Context
 import android.os.Bundle
 
 import android.view.*
@@ -10,6 +11,7 @@ import kotlin.collections.ArrayList
 import androidx.databinding.DataBindingUtil
 import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
 import android.view.ViewGroup
+import android.widget.Toast
 
 
 class ArabicCalendarDialog() : DialogFragment() {
@@ -23,7 +25,6 @@ class ArabicCalendarDialog() : DialogFragment() {
     private var end = 1500
 
     init {
-        //FunctionHelper.hijriMonth.clear()
         setDate(Calendar.getInstance())
     }
 
@@ -77,33 +78,27 @@ class ArabicCalendarDialog() : DialogFragment() {
     fun previous() {
         if (selectedDate.year >= start) {
             selectedDate.month--
-            binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
-            data =
-                updateCurrentMonth(
-                    intArrayOf(
-                        selectedDate.day,
-                        selectedDate.month,
-                        selectedDate.year
-                    )
-                )
-            adapter.updateList(data)
+            changeCurrentMonth(selectedDate)
         }
+    }
+
+    private fun changeCurrentMonth(selectedDate:HijriObj) {
+        binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
+        data =
+            updateCurrentMonth(
+                intArrayOf(
+                    selectedDate.day,
+                    selectedDate.month,
+                    selectedDate.year
+                )
+            )
+        adapter.updateList(data)
     }
 
     fun next() {
         if (selectedDate.year <= end) {
             selectedDate.month++
-            binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
-            data =
-                updateCurrentMonth(
-                    intArrayOf(
-                        selectedDate.day,
-                        selectedDate.month,
-                        selectedDate.year
-                    )
-                )
-            adapter.updateList(data)
-
+           changeCurrentMonth(selectedDate)
         }
     }
 
@@ -209,5 +204,12 @@ class ArabicCalendarDialog() : DialogFragment() {
         return this
     }
 
+    fun setHijriMonthArray(hijriMonthArray: ArrayList<String>): ArabicCalendarDialog {
+        if (hijriMonthArray.size == 12) {
+            FunctionHelper.hijriMonth.clear()
+            FunctionHelper.hijriMonth.addAll(hijriMonthArray)
+        }
+        return this
+    }
 
 }
