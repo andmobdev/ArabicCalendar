@@ -1,7 +1,7 @@
-package com.sodainmind.hijridatepicker
+package com.lifewithtech.hijridatepicker
 
-import com.sodainmind.hijridatepicker.FunctionHelper.convertStringFormat
-import com.sodainmind.hijridatepicker.FunctionHelper.getArabicNumber
+import com.lifewithtech.hijridatepicker.FunctionHelper.convertStringFormat
+import com.lifewithtech.hijridatepicker.FunctionHelper.getArabicNumber
 
 import java.util.*
 

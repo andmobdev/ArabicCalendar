@@ -1,4 +1,4 @@
-package com.sodainmind.hijridatepicker
+package com.lifewithtech.hijridatepicker
 
 interface OnDateSelectedListener {
     fun onClick(date:HijriObj)

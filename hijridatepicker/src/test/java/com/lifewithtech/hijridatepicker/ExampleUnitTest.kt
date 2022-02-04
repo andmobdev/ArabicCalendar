@@ -1,4 +1,4 @@
-package com.sodainmind.hijridatepicker
+package com.lifewithtech.hijridatepicker
 
 import org.junit.Test
 

@@ -1,17 +1,14 @@
-package com.sodainmind.hijridatepicker
+package com.lifewithtech.hijridatepicker
 
-
-import android.content.Context
 import android.os.Bundle
-
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import java.util.*
 import kotlin.collections.ArrayList
 import androidx.databinding.DataBindingUtil
-import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
 import android.view.ViewGroup
-import android.widget.Toast
+import com.sodainmind.hijridatepicker.R
+import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
 
 
 class ArabicCalendarDialog() : DialogFragment() {
@@ -82,7 +79,7 @@ class ArabicCalendarDialog() : DialogFragment() {
         }
     }
 
-    private fun changeCurrentMonth(selectedDate:HijriObj) {
+    private fun changeCurrentMonth(selectedDate: HijriObj) {
         binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
         data =
             updateCurrentMonth(
@@ -98,7 +95,7 @@ class ArabicCalendarDialog() : DialogFragment() {
     fun next() {
         if (selectedDate.year <= end) {
             selectedDate.month++
-           changeCurrentMonth(selectedDate)
+            changeCurrentMonth(selectedDate)
         }
     }
 

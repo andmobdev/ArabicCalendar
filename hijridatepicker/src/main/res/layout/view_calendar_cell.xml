@@ -5,11 +5,11 @@
 
         <variable
             name="hijriDate"
-            type="com.sodainmind.hijridatepicker.HijriObj" />
+            type="com.lifewithtech.hijridatepicker.HijriObj" />
 
         <variable
             name="adapter"
-            type="com.sodainmind.hijridatepicker.CalendarDateAdapter" />
+            type="com.lifewithtech.hijridatepicker.CalendarDateAdapter" />
 
         <import type="android.view.View" />
     </data>

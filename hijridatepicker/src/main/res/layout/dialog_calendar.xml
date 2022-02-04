@@ -7,11 +7,11 @@
 
         <variable
             name="dialog"
-            type="com.sodainmind.hijridatepicker.ArabicCalendarDialog" />
+            type="com.lifewithtech.hijridatepicker.ArabicCalendarDialog" />
 
         <variable
             name="hijriObj"
-            type="com.sodainmind.hijridatepicker.HijriObj" />
+            type="com.lifewithtech.hijridatepicker.HijriObj" />
 
         <import type="android.view.View" />
     </data>
