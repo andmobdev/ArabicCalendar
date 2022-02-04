@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sodainmind.hijridatepicker.databinding.ViewDayBinding
+import java.util.*
 
 class DayAdapter(private val list: MutableList<String>
 ) : RecyclerView.Adapter<DayAdapter.ViewHolder>() {
+
 
 
     class ViewHolder(val binding: ViewDayBinding) : RecyclerView.ViewHolder(binding.root)
@@ -23,11 +25,12 @@ class DayAdapter(private val list: MutableList<String>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.tvDay.text = list[position]
+
     }
 
     override fun getItemCount(): Int {
         return list.size
-
     }
+
 
 }

@@ -1,6 +1,9 @@
 package com.sodainmind.hijridatepicker
 
+
+import android.content.Context
 import android.os.Bundle
+
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import java.util.*
@@ -8,20 +11,21 @@ import kotlin.collections.ArrayList
 import androidx.databinding.DataBindingUtil
 import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
 import android.view.ViewGroup
+import android.widget.Toast
 
 
-class ArabicCalendarDialog(private var onItemClick: (HijriObj) -> Unit,date: Calendar) : DialogFragment() {
-
+class ArabicCalendarDialog() : DialogFragment() {
     private var selectedDate: HijriObj = HijriObj()
     private lateinit var adapter: CalendarDateAdapter
-    private var todayHijriDate: IntArray
+    private lateinit var todayHijriDate: IntArray
+    private lateinit var binding: DialogCalendarBinding
+    private var data = ArrayList<HijriObj>()
+    private var listener: OnDateSelectedListener? = null
+    private var start = 1350
+    private var end = 1500
 
     init {
-        val today = date
-        todayHijriDate = FunctionHelper.getHijriDate(today.time)
-
-        selectedDate = getHijriDate(today)
-
+        setDate(Calendar.getInstance())
     }
 
     companion object {
@@ -30,7 +34,6 @@ class ArabicCalendarDialog(private var onItemClick: (HijriObj) -> Unit,date: Cal
         private const val YEAR: Int = 2
     }
 
-    private lateinit var binding: DialogCalendarBinding
 
     override fun onCreateView(
         i: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -58,7 +61,7 @@ class ArabicCalendarDialog(private var onItemClick: (HijriObj) -> Unit,date: Cal
 
         binding.hijriObj = selectedDate
 
-        val data = updateCurrentMonth(todayHijriDate)
+        data = updateCurrentMonth(todayHijriDate)
         adapter.updateList(data)
     }
 
@@ -73,20 +76,32 @@ class ArabicCalendarDialog(private var onItemClick: (HijriObj) -> Unit,date: Cal
     }
 
     fun previous() {
-        selectedDate.month--
+        if (selectedDate.year >= start) {
+            selectedDate.month--
+            changeCurrentMonth(selectedDate)
+        }
+    }
+
+    private fun changeCurrentMonth(selectedDate:HijriObj) {
         binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
-        val data =
-            updateCurrentMonth(intArrayOf(selectedDate.day, selectedDate.month, selectedDate.year))
+        data =
+            updateCurrentMonth(
+                intArrayOf(
+                    selectedDate.day,
+                    selectedDate.month,
+                    selectedDate.year
+                )
+            )
         adapter.updateList(data)
     }
 
     fun next() {
-        selectedDate.month++
-        binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
-        val data =
-            updateCurrentMonth(intArrayOf(selectedDate.day, selectedDate.month, selectedDate.year))
-        adapter.updateList(data)
+        if (selectedDate.year <= end) {
+            selectedDate.month++
+           changeCurrentMonth(selectedDate)
+        }
     }
+
 
     fun close() {
         this.dismiss()
@@ -103,7 +118,9 @@ class ArabicCalendarDialog(private var onItemClick: (HijriObj) -> Unit,date: Cal
     }
 
     fun save() {
-        onItemClick(selectedDate)
+        if (listener != null) {
+            listener!!.onClick(selectedDate)
+        }
         this.dismiss()
     }
 
@@ -159,6 +176,57 @@ class ArabicCalendarDialog(private var onItemClick: (HijriObj) -> Unit,date: Cal
             e.printStackTrace()
             return ArrayList()
         }
+    }
+
+    private fun setDate(today: Calendar): ArabicCalendarDialog {
+        todayHijriDate = FunctionHelper.getHijriDate(today.time)
+        selectedDate = getHijriDate(today)
+        data = updateCurrentMonth(todayHijriDate)
+        return this
+
+    }
+
+    /**
+     * setCurrentDate() method allows to set the date of opening of calendar instead of default date which is current date.
+     * @param today it contains the date as calendar instance which sets the date of calendar as per requirement.
+     */
+    fun setCurrentDate(today: Calendar): ArabicCalendarDialog {
+        setDate(today)
+        return this
+
+    }
+
+    /**
+     * setOnDateListener() this method provides the user value of selected user input in calendar after successful selection.
+     * @param listener it is a interface which provide the selected value value from the Hijri calendar.
+     */
+    fun setOnDateSetListener(listener: OnDateSelectedListener): ArabicCalendarDialog {
+        this.listener = listener
+        return this
+
+    }
+
+    /**
+     * setYearRange() method is used to set custom working range of Hijri calendar
+     * @param start uses to assign the starting year of calendar
+     * @param end uses to assign the ending year of the calendar
+     */
+    fun setYearRange(start: Int, end: Int): ArabicCalendarDialog {
+        this.start = start
+        this.end = end
+        return this
+    }
+
+    /**
+     *setHijriMonthArray() method uses a string array to clear the existing array of month with new user defined arraylist.
+     * @param hijriMonthArray is used to assign the Hijri month defined by user instead of default
+     */
+    fun setHijriMonthArray(hijriMonthArray: ArrayList<String>): ArabicCalendarDialog {
+        if (hijriMonthArray.size == 12) {
+            FunctionHelper.hijriMonth.clear()
+            FunctionHelper.hijriMonth.addAll(hijriMonthArray)
+        }
+        return this
     }
 
 }
