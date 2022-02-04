@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.lifewithtech.arabiccalendar.R
 import com.lifewithtech.hijridatepicker.ArabicCalendarDialog
 import com.lifewithtech.hijridatepicker.HijriObj
 import com.lifewithtech.hijridatepicker.OnDateSelectedListener
@@ -19,20 +20,21 @@ class MainActivity : AppCompatActivity() {
         val tv = findViewById<TextView>(R.id.tv_click)
         dateTest.set(Calendar.DATE, 10)
         val hijriMonth = arrayListOf(
-            "Test-1", "Test-1", "Test-1", "Test-1", "Test-1", "Test-1", "Test-1", "Test-1","Test-1", "Test-1","Test-1"
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1",
+            "Test-1"
         )
-        /*tv.setOnClickListener {
-            ArabicCalendarDialog()
-                .setOnDateSetListener(object : OnDateSelectedListener {
-                    override fun onClick(date: HijriObj) {
-                        Toast.makeText(this@MainActivity, date.gregDate, Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .show(supportFragmentManager, "DIALOG")
-        }*/
 
         val button: Button = findViewById<Button>(R.id.btn_submit)
-        button.setOnClickListener({
+        button.setOnClickListener {
             ArabicCalendarDialog()
                 .setOnDateSetListener(object : OnDateSelectedListener {
                     override fun onClick(date: HijriObj) {
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }).setYearRange(1441, 1450).setHijriMonthArray(hijriMonth)
                 .show(supportFragmentManager, "DIALOG")
-        })
+        }
     }
 
 }
