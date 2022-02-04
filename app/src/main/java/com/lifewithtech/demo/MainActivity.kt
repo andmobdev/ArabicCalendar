@@ -1,14 +1,13 @@
-package com.lifewithtech.arabiccalendar
+package com.lifewithtech.demo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.sodainmind.hijridatepicker.ArabicCalendarDialog
-import com.sodainmind.hijridatepicker.FunctionHelper
-import com.sodainmind.hijridatepicker.HijriObj
-import com.sodainmind.hijridatepicker.OnDateSelectedListener
+import com.lifewithtech.hijridatepicker.ArabicCalendarDialog
+import com.lifewithtech.hijridatepicker.HijriObj
+import com.lifewithtech.hijridatepicker.OnDateSelectedListener
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

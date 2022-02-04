@@ -1,4 +1,4 @@
-package com.lifewithtech.arabiccalendar
+package com.lifewithtech.demo
 
 import org.junit.Test
 

@@ -1,11 +1,11 @@
-package com.sodainmind.hijridatepicker
+package com.lifewithtech.hijridatepicker
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.sodainmind.hijridatepicker.R
 import com.sodainmind.hijridatepicker.databinding.ViewDayBinding
-import java.util.*
 
 class DayAdapter(private val list: MutableList<String>
 ) : RecyclerView.Adapter<DayAdapter.ViewHolder>() {
