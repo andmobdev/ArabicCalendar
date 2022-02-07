@@ -51,6 +51,7 @@ class CalendarDateAdapter(
     }
 
     fun updateList(list: ArrayList<HijriObj>) {
+        view?.setBackgroundResource(R.drawable.normal_cell_border)
         this.list.clear()
         this.list.addAll(list)
         notifyItemRangeChanged(0, list.size)

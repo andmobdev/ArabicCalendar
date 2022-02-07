@@ -6,13 +6,15 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.sodainmind.hijridatepicker.ArabicCalendarDialog
-import com.sodainmind.hijridatepicker.FunctionHelper
+
 import com.sodainmind.hijridatepicker.HijriObj
 import com.sodainmind.hijridatepicker.OnDateSelectedListener
+
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private var dateTest: Calendar = Calendar.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onClick(date: HijriObj) {
                         Toast.makeText(this@MainActivity, date.gregDate, Toast.LENGTH_SHORT).show()
                     }
-                }).setYearRange(1441, 1450).setHijriMonthArray(hijriMonth)
+                }).setYearRange(1441, 1450).setHijriMonthArray(hijriMonth).setCustomCalendarDesign(R.layout.arabic_calendar_overwrite_layout)
                 .show(supportFragmentManager, "DIALOG")
         })
     }

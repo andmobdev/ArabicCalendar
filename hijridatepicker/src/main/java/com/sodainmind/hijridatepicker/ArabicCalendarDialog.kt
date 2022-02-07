@@ -1,33 +1,39 @@
 package com.sodainmind.hijridatepicker
 
 
-import android.content.Context
 import android.os.Bundle
-
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
-import kotlin.collections.ArrayList
-import androidx.databinding.DataBindingUtil
-import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
-import android.view.ViewGroup
-import android.widget.Toast
 
 
 class ArabicCalendarDialog() : DialogFragment() {
     private var selectedDate: HijriObj = HijriObj()
     private lateinit var adapter: CalendarDateAdapter
     private lateinit var todayHijriDate: IntArray
-    private lateinit var binding: DialogCalendarBinding
+    //private lateinit var binding: DialogCalendarBinding
     private var data = ArrayList<HijriObj>()
     private var listener: OnDateSelectedListener? = null
     private var start = 1350
     private var end = 1500
+    private  lateinit var rvDay:RecyclerView
+    private lateinit var rvData:RecyclerView
+    private lateinit var ivPrevious:ImageView
+    private lateinit var ivNext:ImageView
+    private lateinit var tvCurrentMonthYear:TextView
+    private lateinit var tvCancelButton:TextView
+    private lateinit var tvOkButton:TextView
+    private lateinit var tvArabicDate:TextView
+    private lateinit var tvGeorgDate:TextView
+    private var layout=R.layout.dialog_calendar
+
 
     init {
         setDate(Calendar.getInstance())
     }
-
     companion object {
         private const val DATE = 0
         private const val MONTH: Int = 1
@@ -39,30 +45,43 @@ class ArabicCalendarDialog() : DialogFragment() {
         i: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(
-            i, R.layout.dialog_calendar, container, false
-        )
-        return binding.root
+        val view: View = i.inflate(layout, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.dialog = this
-        binding.rvData.itemAnimator = null
+        rvData=view.findViewById(R.id.rv_data)
+        rvDay=view.findViewById(R.id.rv_day)
+        ivPrevious=view.findViewById(R.id.iv_prev_month)
+        ivNext=view.findViewById(R.id.iv_next_month)
+        tvCurrentMonthYear=view.findViewById(R.id.tv_current_month_year)
+        tvCancelButton=view.findViewById(R.id.tv_cancel)
+        tvOkButton=view.findViewById(R.id.tv_ok_submit)
+        tvArabicDate=view.findViewById(R.id.tv_arabic_date)
+        tvGeorgDate=view.findViewById(R.id.tv_greg_date_calendar)
+        rvData.itemAnimator=null
         adapter = CalendarDateAdapter(onItemClick = { date ->
             selectedDate = date
-            binding.hijriObj = selectedDate
+            tvArabicDate.text=selectedDate.arabicDate
+            tvGeorgDate.text=selectedDate.gregDate
         }, mutableListOf())
 
         val dayAdapter = DayAdapter(FunctionHelper.days)
-        binding.rvDay.adapter = dayAdapter
-        binding.rvData.adapter = adapter
+        rvDay.adapter = dayAdapter
+        rvData.adapter = adapter
 
-
-        binding.hijriObj = selectedDate
+        tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
+        tvArabicDate.text=selectedDate.arabicDate
+        tvGeorgDate.text=selectedDate.gregDate
 
         data = updateCurrentMonth(todayHijriDate)
         adapter.updateList(data)
+        ivPrevious.setOnClickListener{previous()}
+        ivNext.setOnClickListener({next()})
+        tvCancelButton.setOnClickListener({close()})
+        tvOkButton.setOnClickListener({save()})
+
     }
 
 
@@ -82,8 +101,8 @@ class ArabicCalendarDialog() : DialogFragment() {
         }
     }
 
-    private fun changeCurrentMonth(selectedDate:HijriObj) {
-        binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
+    private fun changeCurrentMonth(selectedDate: HijriObj) {
+        tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
         data =
             updateCurrentMonth(
                 intArrayOf(
@@ -98,7 +117,7 @@ class ArabicCalendarDialog() : DialogFragment() {
     fun next() {
         if (selectedDate.year <= end) {
             selectedDate.month++
-           changeCurrentMonth(selectedDate)
+            changeCurrentMonth(selectedDate)
         }
     }
 
@@ -226,6 +245,11 @@ class ArabicCalendarDialog() : DialogFragment() {
             FunctionHelper.hijriMonth.clear()
             FunctionHelper.hijriMonth.addAll(hijriMonthArray)
         }
+        return this
+    }
+
+    fun setCustomCalendarDesign(layout:Int): ArabicCalendarDialog {
+         this.layout=layout
         return this
     }
 
