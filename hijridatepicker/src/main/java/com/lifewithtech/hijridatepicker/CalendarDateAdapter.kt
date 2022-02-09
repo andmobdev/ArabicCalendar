@@ -6,16 +6,13 @@ import android.view.ViewGroup
 
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-
-import com.sodainmind.hijridatepicker.R
-import com.sodainmind.hijridatepicker.databinding.ViewCalendarCellBinding
-
-private var view: View? = null
+import com.lifewithtech.hijridatepicker.databinding.ViewCalendarCellBinding
 
 class CalendarDateAdapter(
     private var onItemClick: (HijriObj) -> Unit, private val list: MutableList<HijriObj>
 ) : RecyclerView.Adapter<CalendarDateAdapter.ViewHolder>() {
 
+    private var view: View? = null
 
     class ViewHolder(val binding: ViewCalendarCellBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -48,6 +45,7 @@ class CalendarDateAdapter(
     }
 
     fun updateList(list: ArrayList<HijriObj>) {
+        view?.setBackgroundResource(R.drawable.normal_cell_border)
         this.list.clear()
         this.list.addAll(list)
         notifyItemRangeChanged(0, list.size)

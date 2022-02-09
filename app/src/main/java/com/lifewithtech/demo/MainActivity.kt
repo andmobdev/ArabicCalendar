@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.lifewithtech.arabiccalendar.R
 import com.lifewithtech.hijridatepicker.ArabicCalendarDialog
 import com.lifewithtech.hijridatepicker.HijriObj
 import com.lifewithtech.hijridatepicker.OnDateSelectedListener
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onClick(date: HijriObj) {
                         Toast.makeText(this@MainActivity, date.gregDate, Toast.LENGTH_SHORT).show()
                     }
-                }).setYearRange(1441, 1450).setHijriMonthArray(hijriMonth)
+                }).setHijriMonthArray(hijriMonth)
                 .show(supportFragmentManager, "DIALOG")
         }
     }

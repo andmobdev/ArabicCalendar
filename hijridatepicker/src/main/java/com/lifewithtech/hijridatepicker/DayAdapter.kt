@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.sodainmind.hijridatepicker.R
-import com.sodainmind.hijridatepicker.databinding.ViewDayBinding
+import com.lifewithtech.hijridatepicker.databinding.ViewDayBinding
 
 class DayAdapter(private val list: MutableList<String>
 ) : RecyclerView.Adapter<DayAdapter.ViewHolder>() {

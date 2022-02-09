@@ -1,14 +1,13 @@
 package com.lifewithtech.hijridatepicker
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.DialogFragment
-import java.util.*
-import kotlin.collections.ArrayList
+import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
-import android.view.ViewGroup
-import com.sodainmind.hijridatepicker.R
-import com.sodainmind.hijridatepicker.databinding.DialogCalendarBinding
+import androidx.fragment.app.DialogFragment
+import com.lifewithtech.hijridatepicker.databinding.DialogCalendarBinding
+import java.util.*
 
 
 class ArabicCalendarDialog() : DialogFragment() {
@@ -44,22 +43,51 @@ class ArabicCalendarDialog() : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.dialog = this
-        binding.rvData.itemAnimator = null
+        binding.calendarView.dialog = this
+        binding.calendarView.rvData.itemAnimator = null
         adapter = CalendarDateAdapter(onItemClick = { date ->
             selectedDate = date
-            binding.hijriObj = selectedDate
+            binding.calendarView.hijriObj = selectedDate
         }, mutableListOf())
 
         val dayAdapter = DayAdapter(FunctionHelper.days)
-        binding.rvDay.adapter = dayAdapter
-        binding.rvData.adapter = adapter
+        binding.calendarView.rvDay.adapter = dayAdapter
+        binding.calendarView.rvData.adapter = adapter
 
 
-        binding.hijriObj = selectedDate
+        binding.calendarView.hijriObj = selectedDate
 
         data = updateCurrentMonth(todayHijriDate)
         adapter.updateList(data)
+        binding.calendarView.tvCurrentMonthYear.setOnClickListener {
+
+            binding.calendarView.root.visibility=View.GONE
+            binding.yearPicker.root.visibility = View.VISIBLE
+            binding.yearPicker.root.bringToFront()
+            binding.yearPicker.npYearPicker.maxValue = end
+            binding.yearPicker.npYearPicker.minValue = start
+            binding.yearPicker.npYearPicker.value = selectedDate.year
+            binding.yearPicker.npYearPicker.wrapSelectorWheel=true
+            binding.yearPicker.tvSelectedYear.text=selectedDate.year.toString()
+
+        }
+
+        binding.yearPicker.tvYpCancel.setOnClickListener {
+            binding.yearPicker.root.visibility = View.GONE
+            binding.calendarView.root.visibility=View.VISIBLE
+        }
+        binding.yearPicker.npYearPicker.setOnValueChangedListener{ picker,oldVal,newVal->
+
+            binding.yearPicker.tvSelectedYear.text=newVal.toString()
+        }
+        binding.yearPicker.tvYpOk.setOnClickListener{
+
+            selectedDate.year=binding.yearPicker.tvSelectedYear.text.toString().toInt()
+            changeCurrentMonth(selectedDate)
+            binding.yearPicker.root.visibility = View.GONE
+            binding.calendarView.root.visibility=View.VISIBLE
+
+        }
     }
 
 
@@ -80,7 +108,7 @@ class ArabicCalendarDialog() : DialogFragment() {
     }
 
     private fun changeCurrentMonth(selectedDate: HijriObj) {
-        binding.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
+        binding.calendarView.tvCurrentMonthYear.text = "${selectedDate.monthName} ${selectedDate.year}"
         data =
             updateCurrentMonth(
                 intArrayOf(
@@ -108,7 +136,7 @@ class ArabicCalendarDialog() : DialogFragment() {
         super.onStart()
         val dialog = dialog
         if (dialog != null) {
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val width = ViewGroup.LayoutParams.WRAP_CONTENT
             val height = ViewGroup.LayoutParams.WRAP_CONTENT
             dialog.window!!.setLayout(width, height)
         }

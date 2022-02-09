@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Projects/arabiccalendar/app/src/main/res/drawable/refs.xml" value="0.2005" />
         <entry key="..\:/Android_Projects/arabiccalendar/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/Android_Projects/arabiccalendar/app/src/main/res/layout/dialog_calendar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android_Projects/arabiccalendar/app/src/main/res/layout/refs.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android_Projects/arabiccalendar/app/src/main/res/xml/ref.xml" value="0.25416666666666665" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/arrow_right.xml" value="0.239" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/cell_border.xml" value="0.124" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/ic_arrow_left.xml" value="0.239" />
@@ -11,13 +15,17 @@
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/left_arrow.xml" value="0.239" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/drawable/normal_cell_border.xml" value="0.124" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/dialog_calendar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/dialog_calendar_custom.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_calendar.xml" value="0.25416666666666665" />
         <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_calendar_cell.xml" value="0.264" />
-        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_day.xml" value="0.11302083333333333" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_calendar_year_picker.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_day.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/arabiccalendar/hijridatepicker/src/main/res/layout/view_year_picker.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/sudip/Desktop/Personal/ArabicCalendar/app/src/main/res/layout/activity_main.xml" value="0.16893115942028986" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
