@@ -12,6 +12,7 @@ import java.util.*
 
 class ArabicCalendarDialog() : DialogFragment() {
     private var selectedDate: HijriObj = HijriObj()
+    private var selectedCalendarDate: HijriObj = HijriObj()
     private lateinit var adapter: CalendarDateAdapter
     private lateinit var todayHijriDate: IntArray
     private lateinit var binding: DialogCalendarBinding
@@ -58,6 +59,7 @@ class ArabicCalendarDialog() : DialogFragment() {
         binding.calendarView.hijriObj = selectedDate
 
         data = updateCurrentMonth(todayHijriDate)
+        adapter.setCurrentSelectedDate(selectedCalendarDate)
         adapter.updateList(data)
         binding.calendarView.tvCurrentMonthYear.setOnClickListener {
 
@@ -206,6 +208,7 @@ class ArabicCalendarDialog() : DialogFragment() {
     private fun setDate(today: Calendar): ArabicCalendarDialog {
         todayHijriDate = FunctionHelper.getHijriDate(today.time)
         selectedDate = getHijriDate(today)
+        selectedCalendarDate=getHijriDate(today)
         data = updateCurrentMonth(todayHijriDate)
         return this
 
